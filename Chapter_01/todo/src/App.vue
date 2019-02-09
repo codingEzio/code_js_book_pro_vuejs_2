@@ -4,7 +4,7 @@
 
 <template>
   <div id="app">
-    <h4>TODO List</h4>
+    <h4 class="bg-primary text-white text-center p-2">TODO List</h4>
   </div>
 </template>
 
