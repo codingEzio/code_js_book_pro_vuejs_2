@@ -22,6 +22,15 @@
         </div>
       </div>
 
+      <div class="row py-2">
+        <div class="col">
+          <input v-model="newItemText" class="form-control">
+        </div>
+        <div class="col-2">
+          <button class="btn btn-primary" v-on:click="addNewTodo">Add</button>
+        </div>
+      </div>
+
       <div class="row bg-secondary py-2 mt-2 text-white">
         <div class="col text-center">
           <!-- Toggling whether it shows the 'completed tasks' or not -->
@@ -45,7 +54,8 @@ export default {
         { action: "Rest a while", done: false },
         { action: "Learn German", done: true }
       ],
-      hideCompleted: true
+      hideCompleted: true,
+      newItemText: ""
     };
   },
   computed: {
@@ -55,6 +65,16 @@ export default {
       // ?  true   ->  tasks that 'to be done'
       // :  false  ->  all the tasks
       return this.hideCompleted ? this.tasks.filter(t => !t.done) : this.tasks;
+    }
+  },
+  methods: {
+    addNewTodo() {
+      this.tasks.push({
+        action: this.newItemText, // Bind by `v-model="newItemText"`
+        done: false
+      });
+      // Once you've submitted, re-init the `input` element
+      this.newItemText = "";
     }
   }
 };
