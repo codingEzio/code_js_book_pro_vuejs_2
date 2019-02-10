@@ -24,9 +24,11 @@
 
       <div class="row py-2">
         <div class="col">
+          <!-- Inputting data -->
           <input v-model="newItemText" class="form-control">
         </div>
         <div class="col-2">
+          <!-- Submit inputted data -->
           <button class="btn btn-primary" v-on:click="addNewTodo">Add</button>
         </div>
       </div>
@@ -48,12 +50,10 @@ export default {
   data() {
     return {
       name: "Yorkie",
-      tasks: [
-        { action: "Watch Talk-show", done: false },
-        { action: "Learn Vue.js", done: true },
-        { action: "Rest a while", done: false },
-        { action: "Learn German", done: true }
-      ],
+      // Now we don't need the placeholder TODO items,
+      //  since we've got 'Local Storage' for storing users' data.
+      //  Do remember to clear the browser's cache (before ur testing).
+      tasks: [],
       hideCompleted: true,
       newItemText: ""
     };
@@ -73,8 +73,22 @@ export default {
         action: this.newItemText, // Bind by `v-model="newItemText"`
         done: false
       });
+
+      // Serializing the data before you saving it
+      //  since the 'local storage' is only able to store string values
+      localStorage.setItem("todos", JSON.stringify(this.tasks));
+
       // Once you've submitted, re-init the `input` element
       this.newItemText = "";
+    }
+  },
+
+  created() {
+    // This method is called when Vue.js creates the element,
+    //  aka. you could load the cache before it's presented to the user.
+    let data = localStorage.getItem("todos");
+    if (data != null) {
+      this.tasks = JSON.parse(data);
     }
   }
 };
