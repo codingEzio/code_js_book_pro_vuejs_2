@@ -10,17 +10,27 @@
     </h4>
 
     <div class="container-fluid p-4">
-      <div class="row">
-        <div class="col font-weight-bold">Task</div>
-        <div class="col-2 font-weight-bold">Done</div>
-      </div>
-
-      <div class="row" v-for="t in filteredTasks" v-bind:key="t.action">
-        <div class="col">{{t.action}}</div>
-        <div class="col-2 text-center">
-          <input type="checkbox" v-model="t.done" class="form-check-input">
+      <div class="row" v-if="filteredTasks.length == 0">
+        <!-- Display a '.. Hooray' message if there's no TODO items -->
+        <div class="col text-center">
+          <b>Nothing to do. Hooray!</b>
         </div>
       </div>
+
+      <template v-else>
+        <!-- Display the TODOs as long as the list is not null -->
+        <div class="row">
+          <div class="col font-weight-bold">Task</div>
+          <div class="col-2 font-weight-bold">Done</div>
+        </div>
+
+        <div class="row" v-for="t in filteredTasks" v-bind:key="t.action">
+          <div class="col">{{t.action}}</div>
+          <div class="col-2 text-center">
+            <input type="checkbox" v-model="t.done" class="form-check-input">
+          </div>
+        </div>
+      </template>
 
       <div class="row py-2">
         <div class="col">
@@ -38,6 +48,10 @@
           <!-- Toggling whether it shows the 'completed tasks' or not -->
           <input type="checkbox" v-model="hideCompleted" class="form-check-input">
           <label class="form-check-label font-weight-bold">Hide completed tasks</label>
+        </div>
+
+        <div class="col text-center">
+          <button class="btn btn-sm btn-warning" v-on:click="deleteCompleted">Delete Completed</button>
         </div>
       </div>
     </div>
@@ -74,12 +88,17 @@ export default {
         done: false
       });
 
+      this.storeData();
+      this.newItemText = ""; // Re-init the `input` element once u've submitted
+    },
+    storeData() {
       // Serializing the data before you saving it
       //  since the 'local storage' is only able to store string values
       localStorage.setItem("todos", JSON.stringify(this.tasks));
-
-      // Once you've submitted, re-init the `input` element
-      this.newItemText = "";
+    },
+    deleteCompleted() {
+      this.tasks = this.tasks.filter(t => !t.done);
+      this.storeData();
     }
   },
 
