@@ -20,6 +20,9 @@
         - You could *ignore the warnings* while installing ```boostrap@4.0.0```.
     - For *Bootstrap*
         - I'll just use the plain one, not any of the frameworks down below.
+    - For checking **Local Storage**
+        - Right click :: ```Inspect```,
+        - then ```Application``` -> ```Storage``` -> ```Local Storage```
 
 ----------
 
