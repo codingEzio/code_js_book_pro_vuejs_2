@@ -50,6 +50,19 @@
         </tr>
       </tbody>
     </table>
+
+    <!-- 
+      The classes (surface only, not internals)
+          form-group      grouping those 'text', 'tooltip' as one `div`
+          form-control    basic styling (it also got `textarea` and else)
+    -->
+    <div class="form-group m-2">
+      <label>New Item:</label>
+      <input v-model="newItemText" class="form-control">
+    </div>
+    <div class="text-center">
+      <button class="btn btn-primary" v-on:click="addNewTodo">Add</button>
+    </div>
   </div>
 </template>
 
@@ -62,8 +75,18 @@ export default {
         { action: "Help people", done: false },
         { action: "Take a shower", done: false },
         { action: "Learn German", done: true }
-      ]
+      ],
+      newItemText: ""
     };
+  },
+  methods: {
+    addNewTodo() {
+      this.tasks.push({
+        action: this.newItemText,
+        done: false
+      });
+      this.newItemText = "";
+    }
   }
 };
 </script>
