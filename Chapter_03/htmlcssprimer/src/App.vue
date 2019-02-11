@@ -29,6 +29,13 @@
     -->
     <h4 class="bg-primary text-white text-center p-2">Yorkie's TODO List</h4>
 
+    <!-- 
+      The classes (surface only, not internals)
+          table           basic styling for tables 
+          table-stripped  adds zebra-stripes (white-grey-white-grey-...) 
+          table-bordered  borders on all sides
+          table-sm        reduce spacing -> more compact 
+    -->
     <table class="table table-striped table-bordered table-sm">
       <thead>
         <tr>
