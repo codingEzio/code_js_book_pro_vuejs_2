@@ -28,18 +28,21 @@
             pl-2, mr-5  
     -->
     <h4 class="bg-primary text-white text-center p-2">Yorkie's TODO List</h4>
-    <div class="container-fluid p-4">
-      <!-- The 1st row for header -->
-      <div class="row">
-        <div class="col font-weight-bold">Task</div>
-        <div class="col-2 font-weight-bold">Done</div>
-      </div>
-      <!-- The rest of them for the data -->
-      <div class="row" v-for="t in tasks" v-bind:key="t.action">
-        <div class="col">{{t.action}}</div>
-        <div class="col-2">{{t.done}}</div>
-      </div>
-    </div>
+
+    <table class="table table-striped table-bordered table-sm">
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Done</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="t in tasks" v-bind:key="t.action">
+          <td>{{t.action}}</td>
+          <td>{{t.done}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
