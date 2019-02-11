@@ -12,3 +12,4 @@
 ### References
 - [Bootstrap 4 Utilities](https://www.w3schools.com/bootstrap4/bootstrap_utilities.asp)  <small>( e.g. ```p-2``` )</small>
 - [Bootstrap 4 Colors](https://www.w3schools.com/bootstrap4/bootstrap_colors.asp)  <small>( e.g. ```bg-primary``` )</small>
+- [Bootstrap 4 Tables](https://www.w3schools.com/bootstrap4/bootstrap_tables.asp)  <small>( e.g. ```.table-striped``` )</small>
