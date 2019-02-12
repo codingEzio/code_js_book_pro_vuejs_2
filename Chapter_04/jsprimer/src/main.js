@@ -244,11 +244,48 @@ let tp_exp_obj3 = {};
 Object.assign(tp_exp_obj3, tp_exp_obj2); // pour the 2nd => into 1st 
 tp_exp_obj3.printHerProfile();
 
+/* ----- Brief intro about "modules" (still unfinished) ----- */
+import addFuncByRelPath from "./maths/sum"; // ./x/y/z/
+import addFuncByRelToSrc from "@/maths/sum"; // src/x/y/z/
+import vueFuncForTesting from "vue"; // ../node_modules/
+
+let total_rel = addFuncByRelPath([10, 20, 30]);
+let total_reltosrc = addFuncByRelToSrc([10, 20, 30]);
+
+console.log(total_rel);
+console.log(total_reltosrc);
+console.log(vueFuncForTesting.toString());
+
+import {
+  multiply as mulFunc,
+  subtract as subFunc,
+} from "./maths/operations";
+
+let vals_for_modopt = [10, 20, 30];
+console.log(`Add:\t${addFuncByRelPath(vals_for_modopt)}`);
+console.log(`Mul:\t${mulFunc(vals_for_modopt)}`);
+console.log(`Sub:\t${subFunc(1000, vals_for_modopt)}\n\n`);
+
+import * as mathopts from "./maths/operations";
+console.log(`Mul:\t${mathopts.multiply(vals_for_modopt)}`);
+console.log(`Div:\t${mathopts.divide(1000, 20)}`);
+console.log(`Sub:\t${mathopts.subtract(1000, vals_for_modopt)}\n\n`);
+
 /* -----  ----- */
 
+import * as mrmat from "./maths";
 
-/* -----  ----- */
+console.log(`Sum: ${mrmat.addition(vals_for_modopt)}`);
+console.log(`Mea: ${mrmat.mean(vals_for_modopt)}`);
 
+import {
+  addition as add,
+  multiply as mul,
+  subtract as sub,
+  mean as avg
+} from "./maths";
+
+// blabla
 
 /* -----  ----- */
 
