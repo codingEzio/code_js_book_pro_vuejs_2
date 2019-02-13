@@ -287,7 +287,41 @@ import {
 
 // blabla
 
+/* ----- Async ----- */
+import {
+  asyncAdd
+} from "./maths";
+
+let vals_for_asyncadd = [10, 20, 30];
+let vals_asyncadd_total = asyncAdd(vals_for_asyncadd);
+
+// Main Total: undefined (after 1 sec)
+// Async Total: 60 
+console.log(`asyncAdd :: Main Total: ${vals_asyncadd_total}`);
+
+/* ----- Async Promise ----- */
+import {
+  asyncProAdd
+} from "./maths";
+
+let vals_for_asyncproadd = [30, 30, 40];
+
+// (after 1 sec)
+// Async Total: 100 
+// Main Total: 100 
+asyncProAdd(vals_for_asyncproadd)
+  .then(total => console.log(`asyncProAdd :: Main Total: ${total}`));
+
 /* -----  ----- */
 
+let vals_for_syntax_async = [10, 20, 30];
 
-/* -----  ----- */
+// (after 1 sec)
+// Async Total: 100 
+// Main Total: 100
+async function doTask() {
+  let total = await asyncAdd(vals_for_syntax_async);
+  console.log(`asyncSyntax :: Main Total: ${total}`);
+}
+
+doTask();
